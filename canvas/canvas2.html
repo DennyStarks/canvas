@@ -66,21 +66,15 @@ function change(e){
 
 document.getElementById("color").onchange = change;
 
-document.body.addEventListener("touchstart", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
+window.addEventListener("touchmove", function (e) {
+  canvas.x = e.touches[0].screenX;
+  canvas.y = e.touches[0].screenY;
+})
+}, clear : function(){
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
-}, false);
-document.body.addEventListener("touchend", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-}, false);
-document.body.addEventListener("touchmove", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-}, false);
+}
+
 
   </script>
 <!-- 100 start, 75 the start - 175, 50 is the radius - how big, last two is the circle and don't ever change them -->
