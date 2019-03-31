@@ -76,20 +76,12 @@ document.getElementById("color").onchange = change;
 
 
 window.addEventListener("touchmove", function (e) {
-  x = e.touches[0].screenX;
-  y = e.touches[0].screenY;
+  canvas.x = e.touches[0].screenX;
+  canvas.y = e.touches[0].screenY;
+  function clear (){
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
 });
-
-window.addEventListener('orientationchange', resizeCanvas, false);
-resizeCanvas();
-};
-
-function resizeCanvas() {
-   canvas.width = window.innerWidth;
-   canvas.height = window.innerHeight;
-}
-
-
 
   </script>
 <!-- 100 start, 75 the start - 175, 50 is the radius - how big, last two is the circle and don't ever change them -->
