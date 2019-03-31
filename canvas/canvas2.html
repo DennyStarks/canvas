@@ -19,6 +19,8 @@
   <script>
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
   var x = 100;
   var y = 100;
   var color = "rgb(255,0,0)";
@@ -76,10 +78,12 @@ document.getElementById("color").onchange = change;
 window.addEventListener("touchmove", function (e) {
   canvas.x = e.touches[0].screenX;
   canvas.y = e.touches[0].screenY;
-})
-, function clear(){
-  ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-}
+});
+
+window.addEventListener('orientationchange', function (e){
+  if (resizeCanvase, true){ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+});
 
 
 
