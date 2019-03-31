@@ -42,6 +42,12 @@
   draw()
   });
 
+  window.addEventListener('touchstart', function (e) {
+  canvas.x=e.pageX;
+  canvas.y=e.pageY;
+  draw()
+  });
+
 window.addEventListener('keypress', function (e) {
   console.log(e.keyCode);
   if (e.keyCode=='32'){
@@ -66,14 +72,15 @@ function change(e){
 
 document.getElementById("color").onchange = change;
 
+
 window.addEventListener("touchmove", function (e) {
   canvas.x = e.touches[0].screenX;
   canvas.y = e.touches[0].screenY;
 })
-}, clear : function(){
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  }
+, function clear(){
+  ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 }
+
 
 
   </script>
