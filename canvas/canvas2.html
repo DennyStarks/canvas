@@ -66,17 +66,15 @@ function change(e){
 
 document.getElementById("color").onchange = change;
 
-var myGameArea = {
-  canvas : document.createElement("canvas"),
-  start : function() {
+function touch() {
     this.canvas.width = 480;
     this.canvas.height = 270;
-    this.context = this.canvas.getContext("2d");
-    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-    this.interval = setInterval(updateGameArea, 20);
+    this.ctx = this.canvas.getContext("2d");
+    // document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    // this.interval = setInterval(updateGameArea, 20);
     window.addEventListener('touchmove', function (e) {
-      myGameArea.x = e.touches[0].screenX;
-      myGameArea.y = e.touches[0].screenY;
+      canvas.x = e.touches[0].screenX;
+      canvas.y = e.touches[0].screenY;
     })
   },
   clear : function(){
