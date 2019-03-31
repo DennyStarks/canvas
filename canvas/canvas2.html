@@ -76,8 +76,8 @@ document.getElementById("color").onchange = change;
 
 
 window.addEventListener("touchmove", function (e) {
-  canvas.x = e.touches[0].screenX;
-  canvas.y = e.touches[0].screenY;
+  canvas.x = e.touches.screenX;
+  canvas.y = e.touches.screenY;
   function clear (){
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
