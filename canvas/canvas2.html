@@ -80,10 +80,14 @@ window.addEventListener("touchmove", function (e) {
   canvas.y = e.touches[0].screenY;
 });
 
-window.addEventListener('orientationchange', function (e){
-  if (resizeCanvase, true){ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-});
+window.addEventListener('orientationchange', resizeCanvas, false);
+resizeCanvas();
+};
+
+function resizeCanvas() {
+   canvas.width = window.innerWidth;
+   canvas.height = window.innerHeight;
+}
 
 
 
