@@ -45,8 +45,8 @@
   });
 
   window.addEventListener('touchstart', function (e) {
-  canvas.x=e.pageX;
-  canvas.y=e.pageY;
+  x=e.pageX;
+  y=e.pageY;
   draw()
   });
 
@@ -76,8 +76,8 @@ document.getElementById("color").onchange = change;
 
 
 window.addEventListener("touchmove", function (e) {
-  canvas.x = e.touches[0].screenX;
-  canvas.y = e.touches[0].screenY;
+  x = e.touches[0].screenX;
+  y = e.touches[0].screenY;
 });
 
 window.addEventListener('orientationchange', resizeCanvas, false);
