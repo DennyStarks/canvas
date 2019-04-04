@@ -3,6 +3,7 @@
 <head>
 
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Canvas Example</title>
   <style type="text/css">
     canvas{
@@ -10,7 +11,7 @@
     }
   </style>
   <body>
-  <canvas id="myCanvas" width="500" height="500">
+  <canvas id="myCanvas" width="800" height="500">
   </canvas>
   <div id="buttons">
       <input type="color" id="color" value="Color">
@@ -19,14 +20,11 @@
   <script>
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
   var x = 100;
   var y = 100;
   var color = "rgb(255,0,0)";
-  var radius = 20;
-  let minRadius = 3;
-  let maxRadius = 30;
+  var radius = 5;
+  var minPenSize = 5;
 
   function draw (){
     ctx.beginPath();
@@ -35,7 +33,7 @@
     ctx.fill();
 
   }
-
+// desktop compatbility
   window.addEventListener('mousemove', function (e) {
   console.log(e.pageX);
   console.log(e.pageY);
@@ -44,44 +42,51 @@
   draw()
   });
 
-  window.addEventListener('touchstart', function (e) {
+// mobile compatbility
+  window.addEventListener('touchmove', function (e) {
   x=e.pageX;
   y=e.pageY;
   draw()
   });
 
-window.addEventListener('keypress', function (e) {
-  console.log(e.keyCode);
-  if (e.keyCode=='32'){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  } else if (e.keyCode=='38'){
-    raduis = maxRadius += 1;
-  } else if (e.keyCode=='40'){
-    radius = minRadius;
-  } else if (e.keyCode=='121'){
-    color = 'yellow';
-  } else if (e.keyCode=='98'){
-    color = 'blue';
-  } else if (e.keyCode=='114'){
-    color = 'red';
-  } else if (e.keyCode=='103'){
-    color = 'green';
-  }
+// using keys to change the color of the pen and resizing the pen tool with the up and down arrow keys
+// keycodes came from http://www.asquare.net/javascript/tests/KeyCode.html
+window.addEventListener('keyup', function (e) {
+  // console.log(e.keyCode);
+    if (e.keyCode == '66') {
+			color="blue";
+		} else if (e.keyCode == '71') {
+      color="green";
+    } else if (e.keyCode == '82') {
+			color="red";
+		} else if (e.keyCode == '89') {
+			color="yellow";
+		} else if (e.keyCode == '38') {
+			radius += 5;
+		} else if (e.keyCode == '40') {
+			if (radius > minPenSize)
+			radius -= 5;
+		}
 });
+
 function change(e){
     color = this.value;
 }
 
 document.getElementById("color").onchange = change;
 
-
-window.addEventListener("touchmove", function (e) {
-  canvas.x = e.touches.screenX;
-  canvas.y = e.touches.screenY;
-  function clear (){
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+// resizing to maintain 80% size
+window.addEventListener('keydown', function(e){
+  if (e.keyCode=='32'){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 });
+
+window.addEventListener('resize' , canvasSize);
+	function canvasSize(e){
+  		canvas.width = window.innerWidth*0.8;
+  		canvas.height = window.innerHeight*0.8;
+	};
 
   </script>
 <!-- 100 start, 75 the start - 175, 50 is the radius - how big, last two is the circle and don't ever change them -->
